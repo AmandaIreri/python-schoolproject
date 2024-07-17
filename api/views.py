@@ -5,10 +5,8 @@ from student.models import Student
 from course.models import Course
 from teacher.models import Teacher
 from class_period.models import ClassPeriod
-from .serializers import ClassPeriodSerializer
-from .serializers import StudentSerilaizer
-from .serializers import TeacherSerializer
-from .serializers import CourseSerializer
+from classroom.models import Classroom
+from .serializers import ClassPeriodSerializer, StudentSerilaizer, TeacherSerializer, CourseSerializer, ClassroomSerializer
 
 # Create your views here.
 class StudentListView(APIView):
@@ -31,5 +29,9 @@ class CourseListView(APIView):
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
-
+class ClassroomListViews(APIView):
+    def get(self, request):
+        classroom = Classroom.objects.all()
+        serializer = ClassroomSerializer(classroom, many=True)
+        return Response(serializer.data)
     
