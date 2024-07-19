@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.views import status
 from student.models import Student
 from course.models import Course
 from teacher.models import Teacher
@@ -14,6 +15,38 @@ class StudentListView(APIView):
         students = Student.objects.all()
         serializer = StudentSerilaizer(students, many=True)
         return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = StudentSerilaizer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status= status.HTTP_201_CREATED) 
+        
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+class StudentDetailView(APIView):
+    def get(self, request, id):
+        student = Student.objects.get(id=id)
+        serializer = StudentSerilaizer(student)
+        return Response(serializer.data)
+    
+    def put(self, request, id):
+        student = Student.objects.get(id=id)
+        serializer = StudentSerilaizer(student, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status= status.HTTP_201_CREATED) 
+        
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete (self, request, id):
+        student = Student.objects.get(id=id)
+        student.delete()
+        return Response (status=status.HTTP_202_ACCEPTED)
+    
+
 class ClassPeriodListView(APIView):
     def get(self, request):
         classperiods = ClassPeriod.objects.all()
