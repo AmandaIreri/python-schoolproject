@@ -1,6 +1,4 @@
 from django.db import models
-from classroom.models import Classroom
-from teacher.models import Teacher
 
 # Create your models here.
 class Course(models.Model):
@@ -10,11 +8,10 @@ class Course(models.Model):
     department = models.CharField(max_length=20)
     max_capacity = models.PositiveIntegerField()
     pass_grade = models.CharField(max_length=10)
-    trainer = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='course')
+    trainer = models.ForeignKey('teacher.Teacher', on_delete=models.SET_NULL, null=True, related_name='course')
     requirement = models.TextField()
     language = models.TextField()
     schedule = models.DateTimeField()
-    classes = models.ManyToManyField(Classroom, related_name='courses')
 
 
     def __str__(self):

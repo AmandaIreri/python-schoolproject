@@ -12,6 +12,7 @@ class Teacher(models.Model):
     age = models.PositiveIntegerField()
     country = models.CharField(max_length=20)
     bio = models.TextField()
+    hire_date = models.DateField(default='2000-01-01')
 
     def __str__(self):
         return f"{self.first_name}{self.last_name}"

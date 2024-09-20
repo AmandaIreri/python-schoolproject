@@ -7,13 +7,13 @@ from course.models import Course
 from teacher.models import Teacher
 from class_period.models import ClassPeriod
 from classroom.models import Classroom
-from .serializers import ClassPeriodSerializer, StudentSerilaizer, TeacherSerializer, CourseSerializer, ClassroomSerializer
+from api.serializers import (ClassPeriodSerializer, StudentSerilaizer, TeacherSerializer, CourseSerializer, ClassroomSerializer, MinimalStudentSerializer, MinimalCourseSerializer, MinimalTeacherSerializer, MinimalClassroomSerializer, MinimalClassPeriodSerializer)
 
 # Create your views here.
 class StudentListView(APIView):
     def get(self,request):
         students = Student.objects.all()
-        serializer = StudentSerilaizer(students, many=True)
+        serializer = MinimalStudentSerializer(students, many=True)
         return Response(serializer.data)
     
     def post(self, request):
@@ -51,7 +51,7 @@ class StudentDetailView(APIView):
 class ClassPeriodListView(APIView):
     def get(self, request):
         classperiods = ClassPeriod.objects.all()
-        serializer = ClassPeriodSerializer(classperiods, many=True)
+        serializer = MinimalClassPeriodSerializer(classperiods, many=True)
         return Response(serializer.data)
     
     def post(self, request):
@@ -89,7 +89,7 @@ class ClassPeriodDetailView(APIView):
 class TeacherListView(APIView):
     def get(self, request):
         teachers = Teacher.objects.all()
-        serializer = TeacherSerializer(teachers, many=True)
+        serializer = MinimalTeacherSerializer(teachers, many=True)
         return Response(serializer.data)
     
     def post(self, request):
@@ -126,7 +126,7 @@ class TeacherDetailView(APIView):
 class CourseListView(APIView):
     def get(self, request):
         courses = Course.objects.all()
-        serializer = CourseSerializer(courses, many=True)
+        serializer = MinimalCourseSerializer(courses, many=True)
         return Response(serializer.data)
     
     def post(self, request):
@@ -164,7 +164,7 @@ class CourseDetailView(APIView):
 class ClassroomListViews(APIView):
     def get(self, request):
         classroom = Classroom.objects.all()
-        serializer = ClassroomSerializer(classroom, many=True)
+        serializer = MinimalClassroomSerializer(classroom, many=True)
         return Response(serializer.data)
     
     def post(self, request):

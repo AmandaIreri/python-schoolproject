@@ -1,0 +1,21 @@
+<h2>List of Courses</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Description</th>
+            <th>Trainer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.course_name }}</td>
+            <td>{{ course.course_code }}</td>
+            <td>{{ course.description }}</td>
+            <td>{{ course.trainer }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

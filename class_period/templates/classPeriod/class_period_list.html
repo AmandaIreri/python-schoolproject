@@ -1,0 +1,21 @@
+<h2>List of Class Periods</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Course</th>
+            <th>Classroom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for class_period in class_periods %}
+        <tr>
+            <td>{{ class_period.start_time }}</td>
+            <td>{{ class_period.end_time }}</td>
+            <td>{{ class_period.course }}</td>
+            <td>{{ class_period.classroom }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

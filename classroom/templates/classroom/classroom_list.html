@@ -1,0 +1,23 @@
+<h2>List of Classrooms</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Class Code</th>
+            <th>Current Students</th>
+            <th>Class Rep</th>
+            <th>Teacher</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for classroom in classrooms %}
+        <tr>
+            <td>{{ classroom.class_name }}</td>
+            <td>{{ classroom.class_code }}</td>
+            <td>{{ classroom.current_students }}</td>
+            <td>{{ classroom.class_rep }}</td>
+            <td>{{ classroom.teacher }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
